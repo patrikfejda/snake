@@ -4,7 +4,13 @@ Predmet Základy tvorby interaktívnych aplikácií
 
 ## Podstata hry
 
-Hrac je snake. Pohybuje sa po canvase hore, dole, doprava a dolava. Snazi sa zjest jedlo. Po kazdom zjedeni jedla sa jeho dlzka zvacsi. Hra sa konci ked sa hlava hada dotkne akejkolvek inej casti hada. 
+Hrac je snake. Pohybuje sa po canvase hore, dole, doprava a dolava. Snazi sa zjest jedlo. Po kazdom zjedeni jedla sa jeho dlzka zvacsi a zvacsi sa skore. Hra sa konci ked sa hlava hada dotkne akejkolvek inej casti hada. 
+
+Pri multiplayerovi hraci hraju spolu. Vedia sa zabit aj sami seba aj navzajom. 
+
+## Ciel hry
+
+Cielom hry je ziskat najvacsie skore pomocou zjedenia co najvacsieho mnozstva jedla. Rovnako to plati aj pri multiplayerovi.
 
 ## Herne mody:
 - singleplayer
@@ -22,6 +28,7 @@ Pri multiplayer jeden hrac aswd a druhy sipky.
 - settings (hudba, zvuk, atd)
 - canvas singleplayer
 - canvas multiplayer
+- leaderboard
 
 ## Level
 1. Easy - prechodne steny
