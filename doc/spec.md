@@ -2,6 +2,9 @@
 
 Predmet Základy tvorby interaktívnych aplikácií
 
+## Podstata hry
+
+Hrac je snake. Pohybuje sa po canvase hore, dole, doprava a dolava. Snazi sa zjest jedlo. Po kazdom zjedeni jedla sa jeho dlzka zvacsi. Hra sa konci ked sa hlava hada dotkne akejkolvek inej casti hada. 
 
 ## Herne mody:
 - singleplayer
