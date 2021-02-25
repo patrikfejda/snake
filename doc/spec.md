@@ -41,5 +41,11 @@ Pri multiplayer jeden hrac aswd a druhy sipky.
 - jed
 - steny
 
+## Herne prostredie
+
+Herne prostredie bude raster stvorcoveho (singleplayer) a obdlznikoveho (multiplayer)
+Snake bude postupnost stvorcov v rastri herneho prostredia
+Jedlo / Jed bude stvorec (z hladiska logiky) v rastri herneho prostredia 
+
 
 
