@@ -8,7 +8,7 @@ Predmet Základy tvorby interaktívnych aplikácií
 - multiplayer (dvaja hraci spolu)
 
 
-# Ovladanie: 
+## Ovladanie: 
 - sipky
 - aswd 
 
