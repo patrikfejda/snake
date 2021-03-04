@@ -49,7 +49,9 @@ Jedlo / Jed bude stvorec (z hladiska logiky) v rastri herneho prostredia
 
 ## Obrazovky
 
+
 Uvodna stranka
+
 ![obrazok1](img/opening.png)
 ---
 Singleplayer
@@ -72,7 +74,8 @@ Nastavenia - zvuk zapnuty
 
 ![obrazok6](img/settings_on.png)
 ---
+Nastavenia - zvuk vypnuty
 
 ![obrazok7](img/settings_off.png)
-Nastavenia - zvuk vypnuty
+
 
