@@ -49,28 +49,28 @@ Jedlo / Jed bude stvorec (z hladiska logiky) v rastri herneho prostredia
 
 ## Obrazovky
 
-![obrazok1](img/opening.png)
 Uvodna stranka
+![obrazok1](img/opening.png)
 ---
+Singleplayer
 
 ![obrazok2](img/singleplayer.png)
-Singleplayer
 ---
+Multiplayer
 
 ![obrazok3](img/multiplayer.png)
-Multiplayer
 ---
+Nepriechodne steny
 
 ![obrazok4](img/walls.png)
-Nepriechodne steny
 ---
+Mrtvy hrac
 
 ![obrazok5](img/dead.png)
-Mrtvy hrac
 ---
+Nastavenia - zvuk zapnuty
 
 ![obrazok6](img/settings_on.png)
-Nastavenia - zvuk zapnuty
 ---
 
 ![obrazok7](img/settings_off.png)
