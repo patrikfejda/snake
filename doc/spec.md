@@ -54,6 +54,6 @@ Jedlo / Jed bude stvorec (z hladiska logiky) v rastri herneho prostredia
 ![obrazok3](img/multiplayer.png)
 ![obrazok4](img/walls.png)
 ![obrazok5](img/dead.png)
-![obrazok6](img/setting_on.png)
-![obrazok7](img/setting_off.png)
+![obrazok6](img/settings_on.png)
+![obrazok7](img/settings_off.png)
 
