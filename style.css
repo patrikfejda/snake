@@ -1,0 +1,26 @@
+body {
+    background: #000000;
+    text-align: center;
+}
+
+canvas {
+    border: 10px solid black;
+    background: #000000;
+}
+
+h1 {
+    color: red;
+    margin: 0;
+    font-size: 4em;
+    font-family: "Avenir Next", Verdana;
+    font-weight: bold;
+}
+
+.gameTitle {
+    text-align: left;
+}
+
+#canvas {
+    max-width: 90%;
+    max-height: 90%;
+}
