@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNAKE</title>
-    <link rel="stylesheet" href="style.css">
+    <title>snake</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/screens.js"></script>
+    <script src="js/music.js"></script>
+
 </head>
 
-<body>
-    <div class="OpeningScreen">
-        <div class="OpeningScreenTitle">
-            <h1>SNAKE</h1>
-        </div>
-        <div class="OpeningScreenButtons">
-            <a class="ButtonOpeningScreen ButtonOpeningScreenRed" href="singleplayer.html"> SINGLE </a>
-            <a class="ButtonOpeningScreen ButtonOpeningScreenYellow" href="singleplayer.html"> MULTI </a>
-        </div>
-        <div class="OpeningScreenSettings">
-            <a style="color:white;" href="settings.html">Settings</a>
-        </div>
+<body style="background-color: #555555;">
+
+    <!-- MAIN MENU -->
+
+    <img id="title_snake" style="display:none;" src="img/title_snake.png" width="800">
+    <div class="buttons">
+        <img id="button_single" onclick="start_singleplayer()" style="display:none;" src="img/button_single.png">
+        <img id="button_multi" onclick="start_multiplayer()" style="display:none;" src="img/button_multi.png">
     </div>
+    <div>
+        <img id="how_to_play" onclick="show_how_to_play()" style="display:none;" height="100" src="img/how_to_play.png">
+        <img id="settings" onclick="show_settings()" style="display:none;" height="100"
+            src="img/settings_dark_dray.png">
+    </div>
+
+    <!-- BACK BUTTON -->
+    
+    <img id="back" style="display: none;" onclick="go_back_to_main_menu()" width="100" src="img/back.png">
+    
+
+    <!-- INSTRUCTIONS -->
+
+    <img id="controls" style="display:none;" src="img/controls.png">
+
+    <!-- SETTINGS -->
+    <div>
+        <img class="sound_controls_buttons" id="music_on" onclick="turn_music_off()" style="display:none;"
+            src="img/music_on.png">
+        <img class="sound_controls_buttons" id="music_off" onclick="turn_music_on()" style="display:none;"
+            src="img/music_off.png">
+        <img class="sound_controls_buttons" id="sound_on" onclick="turn_sound_off()" style="display:none;"
+            src="img/sound_on.png">
+        <img class="sound_controls_buttons" id="sound_off" onclick="turn_sound_on()" style="display:none;"
+            src="img/sound_off.png">
+    </div>
+    <!-- CANVAS -->
+
+    <canvas id="myCanvas" width="1200" height="700" style="border:1px solid #d3d3d3; display:none;">no canvas
+        :(</canvas>
+
 </body>
 
 </html>

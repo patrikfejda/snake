@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>SNAKE</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -14,91 +14,22 @@
 	<canvas id="canvas" width="1240" height="640"></canvas>
 
 
-
 	<script>
+		document.addEventListener("keydown", keyPush);
 
-		// canvas
-		const canvas = document.querySelector("canvas");
-		const title = document.querySelector("h1");
-		const ctx = canvas.getContext("2d");
-
-		// game
-		let gameIsRunning = true;
-
-		const fps = 15;
-		const tileSize = 40;
-		const tileCountX = canvas.width / tileSize;
-		const tileCountY = canvas.height / tileSize;
-
-		let score = 0;
-
-		function drawStuff() {
-			// background
-			// rectangle("#ffbf00", 0, 0, canvas.width, canvas.height);
-
-			// grid
-			drawGrid();
-		}
-
-		// draw rectangle
-		function rectangle(color, x, y, width, height) {
-			ctx.fillStyle = color;
-			ctx.fillRect(x, y, width, height);
-		}
-
-		// randomize food position
-		function resetFood() {
-			// GAME OVER (nowhere to go)
-			if (snakeLength === tileCountX * tileCountY) {
-				gameOver();
-			}
-
-			foodPosX = Math.floor(Math.random() * tileCountX) * tileSize;
-			foodPosY = Math.floor(Math.random() * tileCountY) * tileSize;
-
-			// dont spawn food on snakes head
-			if (foodPosX === snakePosX && foodPosY === snakePosY) {
-				resetFood();
-			}
-
-			// dont spawn food on any snake part
-			if (
-				tail.some(
-					(snakePart) => snakePart.x === foodPosX && snakePart.y === foodPosY
-				)
-			) {
-				resetFood();
-			}
-		}
-
-		/**
-		 * KEYBOARD
-		 */
 		function keyPush(event) {
 			switch (event.key) {
 				case "ArrowLeft":
-					if (velocityX !== 1) {
-						velocityX = -1;
-						velocityY = 0;
-					}
+					alert("LEFT");
 					break;
 				case "ArrowUp":
-					if (velocityY !== 1) {
-						velocityX = 0;
-						velocityY = -1;
-					}
+					alert("UP");
 					break;
 				case "ArrowRight":
-					if (velocityX !== -1) {
-						velocityX = 1;
-						velocityY = 0;
-					}
+					alert("RIGHT");
 					break;
 				case "ArrowDown":
-					if (velocityY !== -1) {
-						velocityX = 0;
-						velocityY = 1;
-					}
+					alert("DOWN");
 					break;
 				default:
 					// restart game
@@ -107,23 +38,99 @@
 			}
 		}
 
-		// grid
-		function drawGrid() {
-			for (let i = 0; i < tileCountX; i++) {
-				for (let j = 0; j < tileCountY; j++) {
-					rectangle(
-						"#ffff01",
-						tileSize * i,
-						tileSize * j,
-						tileSize - 1,
-						tileSize - 1
-					);
+
+		// canvas
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+
+		// game
+		const tileSize = 40;
+		const tileCountX = canvas.width / tileSize;
+		const tileCountY = canvas.height / tileSize;
+		console.log("Tiles X: " + tileCountX + " Tiles Y: " + tileCountY)
+		const gridLineSize = 01;
+		const snakeSpeed = 10; // Part of tile
+		const startingPositionX = 440;
+		const startingPositionY = 440;
+
+		let velocityX = 1;
+		let velocityY = 0;
+
+
+
+
+		class Snake {
+			constructor(playerName, color, positionX, positionY) {
+				this.playerName = playerName;
+				this.color = color;
+				this.positionX = positionX;
+				this.positionY = positionY;
+
+			}
+			drawHead() {
+				ctx.fillStyle = "#000";
+				ctx.fillRect(
+					this.positionX,
+					this.positionY,
+					tileSize - gridLineSize,
+					tileSize - gridLineSize);
+			}
+		}
+
+		let Snake1 = new Snake("Player 1", "black", startingPositionX, startingPositionY);
+
+		function drawCanvasBackgroundTileGrid() {
+			for (let line = 0; line < tileCountY; line++) {
+				for (let row = 0; row < tileCountX; row++) {
+					// ctx.fillStyle = "#ffff01";
+					ctx.fillStyle = "#ffff01";
+					ctx.fillRect(
+						tileSize * row,
+						tileSize * line,
+						tileSize - gridLineSize,
+						tileSize - gridLineSize);
 				}
 			}
 		}
 
 
-		drawStuff();
+
+
+		//////////////	
+		// GAMELOOP
+		//////////////	
+		setInterval(onTimerTick, 33);
+
+		function onTimerTick() {
+			drawCanvasBackgroundTileGrid();
+			Snake1.drawHead();
+
+			//RANDOM POHYB
+			Snake1.positionX -= 1.5 * snakeSpeed;
+			Snake1.positionY -= 0.78 * snakeSpeed;
+
+			// Snake1.positionX += snakeSpeed * velocityX;
+			// Snake1.positionY += snakeSpeed * velocityY;
+
+
+			//////////////	
+			// IF SNAKE OUT => BACK TO CANVAS
+			//////////////	
+
+			if (Snake1.positionX > canvas.width) {
+				Snake1.positionX = 0;
+			}
+			if (Snake1.positionX < 0) {
+				Snake1.positionX = canvas.width;
+			}
+			if (Snake1.positionY > canvas.height) {
+				Snake1.positionY = 0;
+			}
+			if (Snake1.positionY < 0) {
+				Snake1.positionY = canvas.height;
+			}
+		}
+
 	</script>
 </body>
 

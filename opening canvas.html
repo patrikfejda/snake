@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body style="background-color: black;">
+
+    <h1 style="color:red" onclick="upozornenie()">TUK</h1>
+    <img id="button_single" style="display:none;" src="img/button_single.png">
+
+    <img id="button_multi" style="display:none;" src="img/button_multi.png">
+    <img id="title_snake" style="display:none;" src="img/title_snake.png">
+
+
+    <canvas id="myCanvas" width="1200" height="700" style="border:1px solid #d3d3d3;">no canvas :(</canvas>
+
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var img1 = document.getElementById("button_single");
+            var img2 = document.getElementById("button_multi");
+            var img3 = document.getElementById("title_snake");
+            ctx.drawImage(img1, 70, 300);
+            ctx.drawImage(img2, 600, 300);
+            ctx.drawImage(img3, 600 - (img3.width/2), 50);
+        };
+
+        function upozornenie(){
+            alert("OK")
+        }
+    </script>
+
+</body>
+
+</html>

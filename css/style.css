@@ -1,0 +1,29 @@
+#title_snake {
+    margin: 0 200px 70px 160px;
+}
+
+.buttons>img {
+    margin: 0px 30px;
+}
+
+#how_to_play {
+    margin-left: 50px;
+    margin-top: 80px;
+}
+
+#settings {
+    margin-left: 750px;
+    margin-top: 80px;
+}
+
+#controls {
+    margin-left: 400px;
+    margin-top: 200px;
+}
+
+.sound_controls_buttons {
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
