@@ -1,5 +1,5 @@
 function game_singleplayer() {
-    loadGameScreen();
+    hide_everything();
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     canvas.style = "display: block;"
@@ -19,5 +19,10 @@ function game_multiplayer() {
     ctx.moveTo(0, 0);
     ctx.lineTo(200, 100);
     ctx.stroke();
+
+}
+
+function snake_died() {
+    showDeathScreen();
 
 }

@@ -8,6 +8,8 @@
     <script src="js/screens.js"></script>
     <script src="js/music.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/hide.js"></script>
+
 
 
 </head>
@@ -28,9 +30,9 @@
     </div>
 
     <!-- BACK BUTTON -->
-    
-    <img id="back" style="display: none;" onclick="go_back_to_main_menu()" width="100" src="img/back.png">
-    
+
+    <img id="back" style="display: none;" onclick="draw_menu()" width="100" src="img/back.png">
+
 
     <!-- INSTRUCTIONS -->
 
@@ -38,19 +40,24 @@
 
     <!-- SETTINGS -->
     <div>
-        <img class="sound_controls_buttons" id="music_on" onclick="turn_music_off()" style="display:none;"
+        <img class="sound_controls_buttons" id="music_on" width="450" onclick="turn_music_off()" style="display:none;"
             src="img/music_on.png">
-        <img class="sound_controls_buttons" id="music_off" onclick="turn_music_on()" style="display:none;"
+        <img class="sound_controls_buttons" id="music_off" width="450" onclick="turn_music_on()" style="display:none;"
             src="img/music_off.png">
-        <img class="sound_controls_buttons" id="sound_on" onclick="turn_sound_off()" style="display:none;"
+        <img class="sound_controls_buttons" id="sound_on" width="450" onclick="turn_sound_off()" style="display:none;"
             src="img/sound_on.png">
-        <img class="sound_controls_buttons" id="sound_off" onclick="turn_sound_on()" style="display:none;"
+        <img class="sound_controls_buttons" id="sound_off" width="450" onclick="turn_sound_on()" style="display:none;"
             src="img/sound_off.png">
     </div>
     <!-- CANVAS -->
 
-    <canvas id="myCanvas" width="1200" height="700" style="border:1px solid #d3d3d3; display:none;">no canvas
+    <canvas id="myCanvas" width="1200" height="700" onclick="snake_died()" style="border:1px solid #d3d3d3; display:none;">no canvas
         :(</canvas>
+
+    <!-- DEATH -->
+    <img id="dead" width="550" onclick="draw_menu()" style="display:none;"
+            src="img/dead.png">
+    <h1 id="dead_text" style="display:none;">YOU DIED :(</h1>
 
 </body>
 

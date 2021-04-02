@@ -1,3 +1,8 @@
+* {
+    color: #ffff01;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #title_snake {
     margin: 0 200px 70px 160px;
 }
@@ -17,8 +22,8 @@
 }
 
 #controls {
-    margin-left: 400px;
-    margin-top: 200px;
+    margin-left: 250px;
+    margin-top: 100px;
 }
 
 .sound_controls_buttons {
@@ -30,4 +35,15 @@
 
 #myCanvas {
     border: solid red 5px;
+}
+
+#dead {
+    margin-top: 50px;
+    margin-left: 250px;
+    
+}
+
+#dead_text {
+    font-size: 50px;
+    margin-left: 370px ;
 }
