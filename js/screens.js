@@ -1,6 +1,4 @@
-window.onload = function () {
-    draw_menu();
-}
+
 
 function hide_menu() {
     title_snake = document.getElementById("title_snake");
@@ -13,14 +11,6 @@ function hide_menu() {
     display_element(settings, "none");
     how_to_play = document.getElementById("how_to_play");
     display_element(how_to_play, "none");
-}
-
-function start_singleplayer() {
-    alert("singleplayer")
-}
-
-function start_multiplayer() {
-    alert("multiplayer")
 }
 
 function hide_settings(){
@@ -51,13 +41,13 @@ function show_settings() {
     sound_on = document.getElementById("sound_on");
     sound_off = document.getElementById("sound_off");
 
-    if (is_music_on) {
+    if (music_is_on) {
         display_element(music_on,"inline-block"); 
     } else {
         display_element(music_off,"inline-block"); 
     }
 
-    if (is_sound_on) {
+    if (sound_is_on) {
         display_element(sound_on,"inline-block"); 
     } else {
         display_element(sound_off,"inline-block"); 
@@ -91,8 +81,6 @@ function go_back_to_main_menu(){
 
 
 function draw_menu() {
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
 
 
     title_snake = document.getElementById("title_snake");
@@ -109,4 +97,12 @@ function draw_menu() {
 
 function display_element(element, display_type) {
     element.style = "display:" + display_type + ";";
+}
+
+function loadGameScreen() {
+    hide_menu();
+    hide_how_to_play();
+    hide_settings();
+    back = document.getElementById("back");
+    display_element(back, "none");
 }
