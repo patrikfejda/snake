@@ -58,6 +58,5 @@ function turn_sound_on() {
 function turn_sound_off() {
     sound_is_on = false;
     show_settings();
-    mySound1 = get
     mySound1.stop();
 }
