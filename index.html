@@ -4,11 +4,23 @@
 <head>
     <title>snake</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!---MAIN--->
     <script src="js/main.js"></script>
-    <script src="js/screens.js"></script>
-    <script src="js/music.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/hide.js"></script>
+    
+    <!---MODEL--->
+    <script src="js/model/global_var.js"></script>
+    <script src="js/model/music.js"></script>
+
+    <!---VIEW--->
+    <script src="js/view/grid.js"></script>
+    <script src="js/view/menu_screens.js"></script>
+    <script src="js/view/hide.js"></script>
+
+    <!---CONTROLLER--->
+    <script src="js/controller/game.js"></script>
+    <script src="js/controller/music_controls.js"></script>
+
 
 
 
@@ -39,6 +51,7 @@
     <img id="controls" style="display:none;" src="img/controls.png">
 
     <!-- SETTINGS -->
+
     <div>
         <img class="sound_controls_buttons" id="music_on" width="450" onclick="turn_music_off()" style="display:none;"
             src="img/music_on.png">
@@ -49,12 +62,14 @@
         <img class="sound_controls_buttons" id="sound_off" width="450" onclick="turn_sound_on()" style="display:none;"
             src="img/sound_off.png">
     </div>
+
     <!-- CANVAS -->
 
     <canvas id="myCanvas" width="1200" height="700" onclick="snake_died()" style="border:1px solid #d3d3d3; display:none;">no canvas
         :(</canvas>
 
     <!-- DEATH -->
+    
     <img id="dead" width="550" onclick="draw_menu()" style="display:none;"
             src="img/dead.png">
     <h1 id="dead_text" style="display:none;">YOU DIED :(</h1>
