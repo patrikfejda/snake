@@ -1,5 +1,13 @@
 // CONTROLLER
 
+function gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx) {
+    drawGrid(tileCountX, tileCountY, tileSize, ctx);
+    drawSnake(tileCountX, tileCountY, tileSize, ctx);
+    requestAnimationFrame(gameLoopSingleplayer);
+}
+
+
+
 function game_singleplayer() {
     hide_everything();
     var canvas = document.getElementById("myCanvas");
@@ -10,15 +18,22 @@ function game_singleplayer() {
     const tileCountX = canvas.width / tileSize;
     const tileCountY = canvas.height / tileSize;
 
-    drawGrid(tileCountX, tileCountY, tileSize, ctx);
 
-    alert("PRE UKAZANIE DEAD SCREEN TUKNITE NA CANVAS!")
+    snake = new Snake(5, 5, [], 1, 0, "ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft");
+
+
+    gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx);
+
+
+
+
+
 }
 
 function game_multiplayer() {
     hide_everything();
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
+    canvas = document.getElementById("myCanvas");
+    ctx = canvas.getContext("2d");
     canvas.style = "display: block;";
 
     const tileSize = 50;
@@ -26,7 +41,9 @@ function game_multiplayer() {
     const tileCountY = canvas.height / tileSize;
 
     drawGrid(tileCountX, tileCountY, tileSize, ctx);
-    alert("PRE UKAZANIE DEAD SCREEN TUKNITE NA CANVAS!")
+
+    alert("MULTIPLAYER ASI NEBUDE :(");
+
 
 
 }
