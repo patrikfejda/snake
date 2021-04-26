@@ -2,7 +2,7 @@
 
 function gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx) {
     drawGrid(tileCountX, tileCountY, tileSize, ctx);
-    drawSnake(tileCountX, tileCountY, tileSize, ctx);
+    drawSnake(tileCountX, tileCountY, tileSize, ctx, snake);
     requestAnimationFrame(gameLoopSingleplayer);
 }
 
@@ -10,7 +10,7 @@ function gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx) {
 
 function game_singleplayer() {
     hide_everything();
-    var canvas = document.getElementById("myCanvas");
+    canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     canvas.style = "display: block;";
 
