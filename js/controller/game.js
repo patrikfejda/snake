@@ -1,52 +1,37 @@
-// CONTROLLER
-
-function gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx) {
-    drawGrid(tileCountX, tileCountY, tileSize, ctx);
-    drawSnake(tileCountX, tileCountY, tileSize, ctx, snake);
-    requestAnimationFrame(gameLoopSingleplayer);
-}
-
-
-
 function game_singleplayer() {
     hide_everything();
-    canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    canvas.style = "display: block;";
+    game = new Game();
+    game.canvas.style = "display: block;";
 
-    const tileSize = 50;
-    const tileCountX = canvas.width / tileSize;
-    const tileCountY = canvas.height / tileSize;
+    snake = new Snake(game,5, 5, [], 1, 0);
 
 
-    snake = new Snake(5, 5, [], 1, 0, "ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft");
+    // game.asdf(snake);
 
-
-    gameLoopSingleplayer(snake, tileCountX, tileCountY, tileSize, ctx);
-
+    game.gameLoopSingleplayer(snake);
 
 
 
 
 }
 
-function game_multiplayer() {
-    hide_everything();
-    canvas = document.getElementById("myCanvas");
-    ctx = canvas.getContext("2d");
-    canvas.style = "display: block;";
+// function game_multiplayer() {
+//     hide_everything();
+//     canvas = document.getElementById("myCanvas");
+//     ctx = canvas.getContext("2d");
+//     canvas.style = "display: block;";
 
-    const tileSize = 50;
-    const tileCountX = canvas.width / tileSize;
-    const tileCountY = canvas.height / tileSize;
+//     const tileSize = 50;
+//     const tileCountX = canvas.width / tileSize;
+//     const tileCountY = canvas.height / tileSize;
 
-    drawGrid(tileCountX, tileCountY, tileSize, ctx);
+//     drawGrid(tileCountX, tileCountY, tileSize, ctx);
 
-    alert("MULTIPLAYER ASI NEBUDE :(");
+//     alert("MULTIPLAYER ASI NEBUDE :(");
 
 
 
-}
+// }
 
 function snake_died() {
     showDeathScreen();

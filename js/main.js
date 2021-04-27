@@ -1,10 +1,19 @@
 window.onload = function () {
     draw_menu();
 }
-document.addEventListener("keydown", keyPush);
 
+var keys={};
 
+window.onkeydown= function(event){
+	keys[event.keyCode]= true;
+    // console.log("key down:",event.keyCode);
+}
+window.onkeyup= function(event){
+	keys[event.keyCode] =false;
+    // console.log("key up:",event.keyCode);
+}
 
+// document.addEventListener("keydown", keyPush);
 
 
 // MODEL
@@ -12,24 +21,14 @@ document.addEventListener("keydown", keyPush);
 var music_is_on = false;
 var sound_is_on = false;
 
-let canvas = document.getElementById("myCanvas");
-let ctx = canvas.getContext("2d");
-
-
-
-
 
 // keypush
-
-
-
 
 function keyPush(event) {
     console.log("KEY DOWN");
     switch (event.key) {
         case "ArrowLeft":
             console.log("left");
-            alert(snakes);
             break;
         case "ArrowUp":
             console.log("up");
