@@ -1,1 +1,1 @@
-# [>> Play this game <<](patrikfejda.github.io/snake)
+# [>> Play this game <<](https://patrikfejda.github.io/snake/)

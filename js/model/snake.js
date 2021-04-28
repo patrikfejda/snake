@@ -8,39 +8,42 @@ class Snake extends GameObject {
         this.DirectionY = DirectionY;
         this.velocity = 0.1;
     }
-    set_direction_key_down() {
 
+    move() {
 
         this.HeadPosX += this.DirectionX * this.velocity;
         this.HeadPosY += this.DirectionY * this.velocity;
-        console.log("set");
+    }
+    
+    set_direction_key_down() {
 
-        //lavo
+
+
+        //vlavo
         if (keys[37] || keys[65]) {
             console.log("L");
-            this.move("L");
+            this.change_direction("L");
         }
 
-        //pravo
+        //vpravo
         if (keys[39] || keys[68]) {
-            this.move("R");
+            this.change_direction("R");
 
         }
 
         //hore
         if (keys[38] || keys[87]) {
-            this.move("U");
+            this.change_direction("U");
         }
 
         //dole
         if (keys[40] || keys[83]) {
-            this.move("D");
+            this.change_direction("D");
         }
 
     }
 
-    move(direction) {
-        console.log("move");
+    change_direction(direction) {
         switch (direction) {
             case "L":
                 if (this.DirectionX !== 1) {
@@ -72,7 +75,7 @@ class Snake extends GameObject {
     }
 
     draw(tileSize, ctx) {
-        rectangle("#906090", tileSize * this.HeadPosX, tileSize * this.HeadPosY, tileSize - 1, tileSize - 1, ctx)
+        draw_rectangle("#000000", tileSize * this.HeadPosX, tileSize * this.HeadPosY, tileSize - 1, tileSize - 1, ctx)
     }
 
 }
@@ -108,7 +111,7 @@ class Game extends GameObject {
         snake.draw(this.tileSize, this.ctx);
 
         // move snake
-
+        snake.move();
         snake.set_direction_key_down();
 
 
