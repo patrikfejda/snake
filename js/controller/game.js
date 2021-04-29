@@ -3,12 +3,14 @@ function game_singleplayer() {
     game = new Game();
     game.canvas.style = "display: block;";
 
-    snake = new Snake(game,5, 5, [], 1, 0);
+    snake = new Snake(game, 5, 5, [], 1, 0);
+    food = new Food(game, 3, 5);
+
 
 
     // game.asdf(snake);
 
-    game.gameLoopSingleplayer(snake);
+    game.gameLoopSingleplayer(snake, food);
 
 
 
@@ -37,3 +39,11 @@ function snake_died() {
     showDeathScreen();
 
 }
+
+
+
+function delay(time) {
+    return new Promise(function(resolve) { 
+        setTimeout(resolve, time)
+    });
+ }
