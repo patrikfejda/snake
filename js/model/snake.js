@@ -3,9 +3,10 @@ class Food extends GameObject {
         super(game)
         this.PosX = PosX;
         this.PosY = PosY;
+        this.food_sound = new Sound("audio/food.mp3");
     }
 
-    generate_new_position(tileCountX,tileCountY) {
+    generate_new_position(tileCountX, tileCountY) {
         this.PosX = Math.floor(Math.random() * tileCountX);
         this.PosY = Math.floor(Math.random() * tileCountY);
 
@@ -15,21 +16,19 @@ class Food extends GameObject {
     draw(tileSize, ctx) {
         draw_rectangle("#51db24", tileSize * Math.round(this.PosX), tileSize * Math.round(this.PosY), tileSize - 1, tileSize - 1, ctx)
     }
-    
-    check_snake_colision(snake,tileCountX,tileCountY) {
-        if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) && (Math.round(this.PosY) == Math.round(snake.HeadPosY)))  {
-            console.log("mnam");
+
+    check_snake_colision(snake, tileCountX, tileCountY) {
+        if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) && (Math.round(this.PosY) == Math.round(snake.HeadPosY))) {
+            console.log("FOOD EATEN");
+            if (sound_is_on) {
+                this.food_sound.play();
+            }
             // skore ++
             snake.food_eaten();
-            this.generate_new_position(tileCountX,tileCountY);
+            this.generate_new_position(tileCountX, tileCountY);
         }
     }
-
-
-
 }
-
-
 
 class Snake extends GameObject {
     constructor(game, HeadPosX, HeadPosY, Tail, DirectionX, DirectionY) {
@@ -127,8 +126,43 @@ class Snake extends GameObject {
 
     }
 
-    food_eaten(){
+    food_eaten() {
         this.snakeLength++;
+    }
+
+    handle_wall_colision(tileSize, width, height, tileCountX, tileCountY) {
+        if (this.HeadPosX > (width - tileSize) / tileSize) {
+            this.HeadPosX = 0;
+        }
+        else if (this.HeadPosX < 0) {
+            this.HeadPosX += tileCountX - 1;
+
+        }
+        if (this.HeadPosY > (height - tileSize) / tileSize) {
+            this.HeadPosY = 0;
+
+        }
+        else if (this.HeadPosY < 0) {
+            this.HeadPosY += tileCountY - 1;
+        }
+
+    }
+
+    snake_touched_wall(game, tileSize, width, height, tileCountX, tileCountY) {
+        if ((this.HeadPosX > (width - tileSize) / tileSize) || (this.HeadPosX < 0) || (this.HeadPosY > (height - tileSize) / tileSize) || (this.HeadPosY < 0)) {
+            game.stop_game();
+            console.log("NARAZIL SOM DO STENY!");
+        }
+    }
+
+    check_colision_wall(game, level, tileSize, width, height, tileCountX, tileCountY) {
+        if (level == 1) {
+            this.handle_wall_colision(tileSize, width, height, tileCountX, tileCountY);
+        }
+        else if (level == 2) {
+            this.snake_touched_wall(game, tileSize, width, height, tileCountX, tileCountY)
+        }
+
     }
 
 
@@ -142,17 +176,23 @@ class Game extends GameObject {
         super(undefined)
 
         this.dead_sound = new Sound("audio/dead.mp3");
-        this.food_sound = new Sound("audio/food.mp3");
 
         this.canvas = document.getElementById("myCanvas");
 
         this.ctx = this.canvas.getContext("2d");
 
-        this.fps = 1;
+        this.fps = 25;
         this.tileSize = 50;
         this.tileCountX = this.canvas.width / this.tileSize;
         this.tileCountY = this.canvas.height / this.tileSize;
 
+        this.level = 2;
+        this.is_running = 1;
+
+    }
+
+    stop_game() {
+        this.is_running = 0;
     }
 
 
@@ -171,13 +211,20 @@ class Game extends GameObject {
 
         // check
 
-        food.check_snake_colision(snake,this.tileCountX,this.tileCountY);
+        food.check_snake_colision(snake, this.tileCountX, this.tileCountY);
+        snake.check_colision_wall(this, this.level, this.tileSize, this.canvas.width, this.canvas.height, this.tileCountX, this.tileCountY);
 
 
-
-
-        requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food));
-
+        if (this.is_running == 1) {
+            requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food));
+        }
+        else {
+            if (sound_is_on) {
+                this.dead_sound.play();
+            }
+            console.log("YOU ARE DEAD!");
+            showDeathScreen();
+        }
     }
 
 

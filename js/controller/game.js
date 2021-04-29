@@ -35,10 +35,10 @@ function game_singleplayer() {
 
 // }
 
-function snake_died() {
-    showDeathScreen();
+// function snake_died() {
+//     showDeathScreen();
 
-}
+// }
 
 
 
