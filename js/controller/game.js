@@ -1,5 +1,8 @@
 function game_singleplayer() {
     hide_everything();
+
+    score_zero();
+
     game = new Game();
     game.canvas.style = "display: block;";
 
@@ -7,12 +10,7 @@ function game_singleplayer() {
     food = new Food(game, 3, 5);
 
 
-
-    // game.asdf(snake);
-
     game.gameLoopSingleplayer(snake, food);
-
-
 
 
 }

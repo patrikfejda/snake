@@ -3,6 +3,28 @@ window.onload = function () {
 }
 
 var keys={};
+var music_is_on = false;
+var sound_is_on = false;
+var score = 0;
+var hight_score = 0;
+
+function score_add() {
+    score++;
+    console.log("Score: ", score);
+}
+
+function score_zero() {
+    score = 0;
+    console.log("Score set to ", score);
+}
+
+function count_high_score() {
+    if (score > hight_score) {
+        hight_score = score;
+    }
+}
+
+
 
 window.onkeydown= function(event){
 	keys[event.keyCode]= true;
@@ -13,35 +35,7 @@ window.onkeyup= function(event){
     // console.log("key up:",event.keyCode);
 }
 
-// document.addEventListener("keydown", keyPush);
 
 
-// MODEL
 
-var music_is_on = false;
-var sound_is_on = false;
-
-
-// keypush
-
-function keyPush(event) {
-    console.log("KEY DOWN");
-    switch (event.key) {
-        case "ArrowLeft":
-            console.log("left");
-            break;
-        case "ArrowUp":
-            console.log("up");
-            break;
-        case "ArrowRight":
-            console.log("right");
-            break;
-        case "ArrowDown":
-            console.log("down");
-            break;
-        default:
-            console.log(event.key + " - pressed - dont know what to do.")
-            break;
-    }
-}
 

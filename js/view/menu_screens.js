@@ -42,6 +42,9 @@ function draw_menu() {
 function showDeathScreen() {
     hide_everything();
 
+    var elem = document.getElementById("dead_text");
+    elem.innerHTML = "Your score: "+score+"   (High score: "+hight_score+")";
+
     display_element_by_element_id("dead", "block");
     display_element_by_element_id("dead_text", "block");
 

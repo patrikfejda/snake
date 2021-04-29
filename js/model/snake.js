@@ -23,7 +23,7 @@ class Food extends GameObject {
             if (sound_is_on) {
                 this.food_sound.play();
             }
-            // skore ++
+            score_add();
             snake.food_eaten();
             this.generate_new_position(tileCountX, tileCountY);
         }
@@ -186,7 +186,7 @@ class Game extends GameObject {
         this.tileCountX = this.canvas.width / this.tileSize;
         this.tileCountY = this.canvas.height / this.tileSize;
 
-        this.level = 2;
+        this.level = 1;
         this.is_running = 1;
 
     }
@@ -195,7 +195,19 @@ class Game extends GameObject {
         this.is_running = 0;
     }
 
+    handle_levels() {
+        if (score == 5) {
+            this.level = 2;
+            // this.canvas.style = "border: solid black 1px;";
+            this.canvas.style = "border: solid red 10px;";
+            console.log("LEVEL SET TO: ", this.level);
+        }
+        else if (score == 20) {
+            this.level = 3;
+            console.log("LEVEL SET TO: ", this.level);
 
+        }
+    }
 
     gameLoopSingleplayer(snake, food) {
 
@@ -213,6 +225,7 @@ class Game extends GameObject {
 
         food.check_snake_colision(snake, this.tileCountX, this.tileCountY);
         snake.check_colision_wall(this, this.level, this.tileSize, this.canvas.width, this.canvas.height, this.tileCountX, this.tileCountY);
+        this.handle_levels();
 
 
         if (this.is_running == 1) {
@@ -222,6 +235,7 @@ class Game extends GameObject {
             if (sound_is_on) {
                 this.dead_sound.play();
             }
+            count_high_score();
             console.log("YOU ARE DEAD!");
             showDeathScreen();
         }
