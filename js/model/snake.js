@@ -14,7 +14,7 @@ class Food extends GameObject {
     }
 
     draw(tileSize, ctx) {
-        draw_rectangle("#51db24", tileSize * Math.round(this.PosX), tileSize * Math.round(this.PosY), tileSize - 1, tileSize - 1, ctx)
+        draw_rectangle("#228B22", tileSize * Math.round(this.PosX), tileSize * Math.round(this.PosY), tileSize - 1, tileSize - 1, ctx)
     }
 
     check_snake_colision(snake, tileCountX, tileCountY) {
@@ -196,7 +196,7 @@ class Game extends GameObject {
     }
 
     handle_levels() {
-        if (score == 5) {
+        if (score == 10) {
             this.level = 2;
             // this.canvas.style = "border: solid black 1px;";
             this.canvas.style = "border: solid red 10px;";
