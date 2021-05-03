@@ -12,7 +12,7 @@ function hide_everything() {
 function hide_menu() {
     display_element_by_element_id("title_snake", "none");
     display_element_by_element_id("button_single", "none");
-    display_element_by_element_id("button_multi", "none");
+    // display_element_by_element_id("button_multi", "none");
     display_element_by_element_id("settings", "none");
     display_element_by_element_id("how_to_play", "none");
 }

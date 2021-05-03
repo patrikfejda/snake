@@ -34,7 +34,7 @@ function draw_menu() {
 
     display_element_by_element_id("title_snake", "block");    
     display_element_by_element_id("button_single", "inline-block");
-    display_element_by_element_id("button_multi", "inline-block");
+    // display_element_by_element_id("button_multi", "inline-block");
     display_element_by_element_id("settings", "inline-block");    
     display_element_by_element_id("how_to_play", "inline-block");
 };
