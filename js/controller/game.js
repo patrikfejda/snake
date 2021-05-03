@@ -8,9 +8,10 @@ function game_singleplayer() {
 
     snake = new Snake(game, 5, 5, [], 1, 0);
     food = new Food(game, 3, 5);
+    poison = new Poison(game, 2, 5);
 
 
-    game.gameLoopSingleplayer(snake, food);
+    game.gameLoopSingleplayer(snake, food, poison);
 
 
 }

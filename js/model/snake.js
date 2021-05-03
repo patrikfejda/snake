@@ -6,18 +6,21 @@ class Food extends GameObject {
         this.food_sound = new Sound("audio/food.mp3");
     }
 
-    generate_new_position(tileCountX, tileCountY) {
+    generate_new_position(tileCountX, tileCountY,snake) {
         this.PosX = Math.floor(Math.random() * tileCountX);
         this.PosY = Math.floor(Math.random() * tileCountY);
 
-        // doplnit check ci sa nenachadza na snakovi
+        if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) || (Math.round(this.PosY) == Math.round(snake.HeadPosY))) {
+            console.log("FOOD WAS IN THE SAME LINE AS SNAKE, GENERATE AGAIN!");
+            this.generate_new_position(tileCountX, tileCountY,snake);
+        }
     }
 
     draw(tileSize, ctx) {
         draw_rectangle("#228B22", tileSize * Math.round(this.PosX), tileSize * Math.round(this.PosY), tileSize - 1, tileSize - 1, ctx)
     }
 
-    check_snake_colision(snake, tileCountX, tileCountY) {
+    check_snake_colision(snake, tileCountX, tileCountY, poison) {
         if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) && (Math.round(this.PosY) == Math.round(snake.HeadPosY))) {
             console.log("FOOD EATEN");
             if (sound_is_on) {
@@ -25,7 +28,31 @@ class Food extends GameObject {
             }
             score_add();
             snake.food_eaten();
-            this.generate_new_position(tileCountX, tileCountY);
+            this.generate_new_position(tileCountX, tileCountY,snake);
+            poison.generate_new_position(tileCountX, tileCountY,snake);        
+        }
+    }
+}
+
+class Poison extends Food {
+    constructor(game, PosX, PosY) {
+        super(game)
+        this.PosX = PosX;
+        this.PosY = PosY;
+        this.food_sound = new Sound("audio/dead.mp3");
+    }
+
+    draw(tileSize, ctx) {
+        draw_rectangle("#ff0000", tileSize * Math.round(this.PosX), tileSize * Math.round(this.PosY), tileSize - 1, tileSize - 1, ctx)
+    }
+
+    check_snake_colision(snake, tileCountX, tileCountY) {
+        if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) && (Math.round(this.PosY) == Math.round(snake.HeadPosY))) {
+            console.log("POISON EATEN - SNAKE IS DEAD!");
+            game.stop_game();
+            if (sound_is_on) {
+                this.food_sound.play();
+            }
         }
     }
 }
@@ -159,14 +186,21 @@ class Snake extends GameObject {
         if (level == 1) {
             this.handle_wall_colision(tileSize, width, height, tileCountX, tileCountY);
         }
-        else if (level == 2) {
+        else if (level > 1) {
             this.snake_touched_wall(game, tileSize, width, height, tileCountX, tileCountY)
         }
 
     }
 
-
-
+    check_tail_colision(game) {
+        for (let i = 0; i < this.Tail.length - 1; i++) {
+            let snakePart = this.Tail[i];
+            if (this.HeadPosX === snakePart.x && this.HeadPosY === snakePart.y) {
+                console.log("HEAD TOUCHED THE TAIL!");
+                game.stop_game();
+            }
+        }
+    }
 }
 
 
@@ -188,6 +222,9 @@ class Game extends GameObject {
 
         this.level = 1;
         this.is_running = 1;
+        this.level_2_limit = 5;
+        this.level_3_limit = 10;
+
 
     }
 
@@ -196,25 +233,29 @@ class Game extends GameObject {
     }
 
     handle_levels() {
-        if (score == 10) {
+        if (score == this.level_2_limit) {
             this.level = 2;
             // this.canvas.style = "border: solid black 1px;";
             this.canvas.style = "border: solid red 10px;";
             console.log("LEVEL SET TO: ", this.level);
         }
-        else if (score == 20) {
+        else if (score == this.level_3_limit) {
             this.level = 3;
             console.log("LEVEL SET TO: ", this.level);
 
         }
     }
 
-    gameLoopSingleplayer(snake, food) {
+    gameLoopSingleplayer(snake, food, poison) {
 
         // draw
         drawGrid(this.tileCountX, this.tileCountY, this.tileSize, this.ctx);
         food.draw(this.tileSize, this.ctx);
         snake.draw(this.tileSize, this.ctx);
+
+        if (this.level > 2) {
+            poison.draw(this.tileSize, this.ctx);
+        }
 
         // move
         snake.move();
@@ -223,13 +264,22 @@ class Game extends GameObject {
 
         // check
 
-        food.check_snake_colision(snake, this.tileCountX, this.tileCountY);
+        food.check_snake_colision(snake, this.tileCountX, this.tileCountY,poison);
         snake.check_colision_wall(this, this.level, this.tileSize, this.canvas.width, this.canvas.height, this.tileCountX, this.tileCountY);
         this.handle_levels();
+        snake.check_tail_colision(game);
+
+        if (this.level > 2) {
+            poison.check_snake_colision(snake, this.tileCountX, this.tileCountY);
+        }
+        
+
+
+
 
 
         if (this.is_running == 1) {
-            requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food));
+            requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food, poison));
         }
         else {
             if (sound_is_on) {
