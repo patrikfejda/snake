@@ -7,8 +7,8 @@ class Food extends GameObject {
     }
 
     generate_new_position(tileCountX, tileCountY,snake) {
-        this.PosX = Math.floor(Math.random() * tileCountX);
-        this.PosY = Math.floor(Math.random() * tileCountY);
+        this.PosX = Math.floor(1+Math.random() * (tileCountX-2));
+        this.PosY = Math.floor(1+Math.random() * (tileCountY-2));
 
         if ((Math.round(this.PosX) == Math.round(snake.HeadPosX)) || (Math.round(this.PosY) == Math.round(snake.HeadPosY))) {
             console.log("FOOD WAS IN THE SAME LINE AS SNAKE, GENERATE AGAIN!");
