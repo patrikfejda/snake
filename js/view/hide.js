@@ -30,6 +30,7 @@ function hide_how_to_play() {
 
 function hide_canvas() {
     display_element_by_element_id("myCanvas", "none");
+    display_element_by_element_id("score", "none");
 }
 
 function hide_death_screen() {

@@ -246,7 +246,7 @@ class Game extends GameObject {
         }
     }
 
-    gameLoopSingleplayer(snake, food, poison) {
+    gameLoopSingleplayer(snake, food, poison, score_counter) {
 
         // draw
         drawGrid(this.tileCountX, this.tileCountY, this.tileSize, this.ctx);
@@ -264,22 +264,20 @@ class Game extends GameObject {
 
         // check
 
-        food.check_snake_colision(snake, this.tileCountX, this.tileCountY,poison);
+        food.check_snake_colision(snake, this.tileCountX, this.tileCountY, poison);
         snake.check_colision_wall(this, this.level, this.tileSize, this.canvas.width, this.canvas.height, this.tileCountX, this.tileCountY);
         this.handle_levels();
         snake.check_tail_colision(game);
 
+        // show score
+        score_counter.innerHTML = "Score: "+score;
+
         if (this.level > 2) {
             poison.check_snake_colision(snake, this.tileCountX, this.tileCountY);
         }
-        
-
-
-
-
 
         if (this.is_running == 1) {
-            requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food, poison));
+            requestAnimationFrame(() => this.gameLoopSingleplayer(snake, food, poison, score_counter));
         }
         else {
             if (sound_is_on) {
