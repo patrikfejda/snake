@@ -49,9 +49,3 @@ function showDeathScreen() {
     display_element_by_element_id("dead_text", "block");
 
 }
-
-// help function
-
-function display_element_by_element_id(element_id, display_type) {
-    document.getElementById(element_id).style = "display:" + display_type + ";";
-}

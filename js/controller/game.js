@@ -18,34 +18,3 @@ function game_singleplayer() {
 
 
 }
-
-// function game_multiplayer() {
-//     hide_everything();
-//     canvas = document.getElementById("myCanvas");
-//     ctx = canvas.getContext("2d");
-//     canvas.style = "display: block;";
-
-//     const tileSize = 50;
-//     const tileCountX = canvas.width / tileSize;
-//     const tileCountY = canvas.height / tileSize;
-
-//     drawGrid(tileCountX, tileCountY, tileSize, ctx);
-
-//     alert("MULTIPLAYER ASI NEBUDE :(");
-
-
-
-// }
-
-// function snake_died() {
-//     showDeathScreen();
-
-// }
-
-
-
-function delay(time) {
-    return new Promise(function(resolve) { 
-        setTimeout(resolve, time)
-    });
- }
